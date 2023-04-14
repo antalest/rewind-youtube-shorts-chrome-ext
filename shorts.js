@@ -8,7 +8,8 @@ const injectVideoLink = () => {
     a.innerHTML = "Watch as a normal video";
     a.href = `https://www.youtube.com/watch?v=${videoID}`;
     a.id = "normal-video-link";
-    a.style.cssText = `position: absolute; right: 1em; bottom: 10em; font-size: 1.5em`
+    a.style.cssText = `position: absolute; right: 0.5em; bottom: 5em; font-size: 1.5em;
+                      width: 4em; color: black; font-family: "Roboto","Arial",sans-serif`
     document.body.appendChild(a);
   } else {
     videoLink.href = `https://www.youtube.com/watch?v=${videoID}`;

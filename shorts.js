@@ -1,5 +1,5 @@
-let prevVideoID;
 let videoID;
+let lastUrl = new URL(document.location.href);
 
 const injectVideoLink = () => {
   const videoLink = document.getElementById("normal-video-link");
@@ -20,7 +20,9 @@ const updateVideoId = (url) => {
   videoID = url.pathname.slice(8);
 }
 
-let lastUrl = new URL(document.location.href);
+//Run for the first time
+updateVideoId(lastUrl);
+injectVideoLink();
 
 new MutationObserver(() => {
   let url = new URL(document.location.href);
@@ -31,6 +33,3 @@ new MutationObserver(() => {
     injectVideoLink();
   }
 }).observe(document, { subtree: true, childList: true });
-
-updateVideoId(lastUrl);
-injectVideoLink();

@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name" : "Rewind Youtube Shorts",
     "description": "Let's you watch Youtube Shorts as normal videos",
-    "version" : "0.1",
+    "version" : "1.0.0",
     "icons": {
         "16": "images/rewind_youtube_shorts24.png",
         "48": "images/rewind_youtube_shorts48.png",

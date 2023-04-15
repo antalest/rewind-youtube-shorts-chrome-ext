@@ -4,9 +4,9 @@
     "description": "Let's you watch Youtube Shorts as normal videos",
     "version" : "0.1",
     "icons": {
-        "16": "images/Youtube_shorts_icon_24.png",
-        "48": "images/Youtube_shorts_icon_48.png",
-        "128": "images/Youtube_shorts_icon_128.png"
+        "16": "images/rewind_youtube_shorts24.png",
+        "48": "images/rewind_youtube_shorts48.png",
+        "128": "images/rewind_youtube_shorts128.png"
     },
     "content_scripts": [
       {

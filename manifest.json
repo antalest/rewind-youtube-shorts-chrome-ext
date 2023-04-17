@@ -12,7 +12,7 @@
       {
         "run_at": "document_idle",
         "matches": [
-          "https://www.youtube.com/shorts/*"
+          "https://www.youtube.com/*"
         ],
         "js": [ "shorts.js" ]
       }

@@ -1,11 +1,10 @@
-let videoID;
 let lastUrl = new URL(document.location.href);
 
-const updateVideoId = (url) => {
-  videoID = url.pathname.slice(8);
+const getVideoId = (url) => {
+  return url.pathname.slice(8);
 }
 
-const injectVideoLink = () => {
+const injectVideoLink = (videoID) => {
   const videoLink = document.getElementById("normal-video-link");
   if (!videoLink) {
     let a = document.createElement("a");
@@ -29,8 +28,8 @@ const removeVideoLink = () => {
 
 //Run for the first time
 if (location.href.includes("/shorts/")) {
-  updateVideoId(lastUrl);
-  injectVideoLink();
+  const videoID = getVideoId(lastUrl);
+  injectVideoLink(videoID);
 }
 
 new MutationObserver(() => {
@@ -43,9 +42,9 @@ new MutationObserver(() => {
   //Handle video link injection or removal
   if (url.pathname.includes("/shorts/")) {
     lastUrl = url;
-    updateVideoId(url);
+    const videoID = getVideoId(url);
     console.log(`videoID: ${videoID}`);
-    injectVideoLink();
+    injectVideoLink(videoID);
   } else {
     removeVideoLink();
   }

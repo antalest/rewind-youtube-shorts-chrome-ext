@@ -20,8 +20,11 @@ const injectVideoLink = () => {
   }
 }
 
-const updateVideoId = (url) => {
-  videoID = url.pathname.slice(8);
+const removeVideoLink = () => {
+  const videoLink = document.getElementById("normal-video-link");
+  if (videoLink) {
+    videoLink.remove();
+  }
 }
 
 //Run for the first time
@@ -43,5 +46,7 @@ new MutationObserver(() => {
     updateVideoId(url);
     console.log(`videoID: ${videoID}`);
     injectVideoLink();
+  } else {
+    removeVideoLink();
   }
 }).observe(document, { subtree: true, childList: true });

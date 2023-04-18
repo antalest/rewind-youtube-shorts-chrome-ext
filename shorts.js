@@ -12,10 +12,12 @@ const injectVideoLink = (videoID) => {
     a.href = `https://www.youtube.com/watch?v=${videoID}`;
     a.id = "normal-video-link";
     a.style.cssText = `position: absolute; right: 0.5em; bottom: 5em; font-size: 1.5em;
-                      width: 4em; color: black; font-family: "Roboto","Arial",sans-serif`
+                      width: 4em; color: black; font-family: "Roboto","Arial",sans-serif`;
     document.body.appendChild(a);
+    log(`added video link: ${a.href}`);
   } else {
     videoLink.href = `https://www.youtube.com/watch?v=${videoID}`;
+    log(`updated video link: ${videoLink.href}`);
   }
 }
 
@@ -24,6 +26,10 @@ const removeVideoLink = () => {
   if (videoLink) {
     videoLink.remove();
   }
+}
+
+const log = (message) => {
+  console.log(`[Rewind Youtube Shorts]: ${message}`);
 }
 
 //Run for the first time
@@ -43,7 +49,7 @@ new MutationObserver(() => {
   if (url.pathname.includes("/shorts/")) {
     lastUrl = url;
     const videoID = getVideoId(url);
-    console.log(`videoID: ${videoID}`);
+    log(`new videoID: ${videoID}`);
     injectVideoLink(videoID);
   } else {
     removeVideoLink();

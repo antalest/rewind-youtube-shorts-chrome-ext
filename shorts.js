@@ -6,6 +6,8 @@ const getVideoId = (url) => {
 
 const injectVideoLink = (videoID) => {
   const videoLink = document.getElementById("normal-video-link");
+
+  //Add video link if didn't exist yet
   if (!videoLink) {
     let a = document.createElement("a");
     a.innerHTML = "Watch as a normal video";
@@ -15,10 +17,12 @@ const injectVideoLink = (videoID) => {
                       width: 4em; color: black; font-family: "Roboto","Arial",sans-serif`;
     document.body.appendChild(a);
     log(`added video link: ${a.href}`);
-  } else {
-    videoLink.href = `https://www.youtube.com/watch?v=${videoID}`;
-    log(`updated video link: ${videoLink.href}`);
+    return;
   }
+
+  //Update video link otherwise
+  videoLink.href = `https://www.youtube.com/watch?v=${videoID}`;
+  log(`updated video link: ${videoLink.href}`);
 }
 
 const removeVideoLink = () => {
@@ -40,18 +44,21 @@ if (location.href.includes("/shorts/")) {
 
 new MutationObserver(() => {
   let url = new URL(document.location.href);
+  
   //Return early if URL didn't change
   if (url.href == lastUrl.href) {
     return;
   }
 
-  //Handle video link injection or removal
+  //Handle video link injection
   if (url.pathname.includes("/shorts/")) {
     lastUrl = url;
     const videoID = getVideoId(url);
     log(`new videoID: ${videoID}`);
     injectVideoLink(videoID);
-  } else {
-    removeVideoLink();
+    return;
   }
+
+  //Handle video link removal
+  removeVideoLink();
 }).observe(document, { subtree: true, childList: true });
